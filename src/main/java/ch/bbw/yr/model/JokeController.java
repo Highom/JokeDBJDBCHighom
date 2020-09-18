@@ -79,8 +79,29 @@ public class JokeController {
         bookMdb.deleteJoke(id);
     }
 
+
     @GetMapping("/csv/jokes")
     ArrayList<Joke> allCsv() {
         return bookCsv.getJokes();
+    }
+
+    @GetMapping("/csv/jokes/{id}")
+    public Joke oneCsv(@PathVariable int id) {
+        return bookCsv.getJokeById(id);
+    }
+
+    @PostMapping("/csv/jokes")
+    public void addJokeCsv(@RequestBody Joke newJoke) {
+        bookCsv.addJoke(newJoke);
+    }
+
+    @PutMapping("/csv/jokes/{id}")
+    public void updateJokeCsv(@PathVariable int id, @RequestBody Joke newJoke) {
+        bookCsv.updateJoke(id ,newJoke);
+    }
+
+    @DeleteMapping("/csv/jokes/{id}")
+    public void deleteJokeCsv(@PathVariable int id) {
+        bookCsv.deleteJoke(id);
     }
 }
