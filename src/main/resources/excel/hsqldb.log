@@ -1,0 +1,5 @@
+/*C3*/SET SCHEMA PUBLIC
+DROP TABLE IF EXISTS joke
+CREATE TEXT TABLE joke (id int, joke varchar(100), rating int, date datetime)
+SET TABLE joke SOURCE 'joke.csv;ignore_first=true;fs=\semi'
+DISCONNECT
