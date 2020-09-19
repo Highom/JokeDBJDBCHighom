@@ -27,26 +27,31 @@ public class JokeController {
     DataBaseAccess daoCsv = factory.createDAO("csv");
     JokeBook bookCsv = new JokeBook(daoCsv);
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sql/jokes")
     public ArrayList<Joke> allSql() {
         return bookSql.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/sql/jokes/{id}")
     public Joke oneSql(@PathVariable int id) {
         return bookSql.getJokeById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sql/jokes")
     public void addJokeSQL(@RequestBody Joke newJoke) {
         bookSql.addJoke(newJoke);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sql/jokes/{id}")
     public void updateJokeSQL(@PathVariable int id, @RequestBody Joke newJoke) {
         bookSql.updateJoke(id ,newJoke);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/sql/jokes/{id}")
     public void deleteJokeSQL(@PathVariable int id) {
         bookSql.deleteJoke(id);
