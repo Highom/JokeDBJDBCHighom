@@ -8,9 +8,7 @@
 package ch.bbw.yr.model;
 
 import ch.bbw.yr.dao.DataBaseAccess;
-import ch.bbw.yr.dao.DataBaseAccessCsv;
-import ch.bbw.yr.dao.DataBaseAccessMDB;
-import ch.bbw.yr.dao.DataBaseAccessSQL;
+import ch.bbw.yr.factory.DataAccessFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,13 +16,15 @@ import java.util.ArrayList;
 @RestController
 public class JokeController {
 
-    DataBaseAccess daoSql = new DataBaseAccessSQL();
+    DataAccessFactory factory = new DataAccessFactory();
+
+    DataBaseAccess daoSql = factory.createDAO("sql");
     JokeBook bookSql = new JokeBook(daoSql);
 
-    DataBaseAccess daoMdb = new DataBaseAccessMDB();
+    DataBaseAccess daoMdb = factory.createDAO("mdb");
     JokeBook bookMdb = new JokeBook(daoMdb);
 
-    DataBaseAccess daoCsv = new DataBaseAccessCsv();
+    DataBaseAccess daoCsv = factory.createDAO("csv");
     JokeBook bookCsv = new JokeBook(daoCsv);
 
     @GetMapping("/sql/jokes")
