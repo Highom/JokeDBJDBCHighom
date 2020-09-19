@@ -73,9 +73,10 @@ public class DataBaseAccessCsv implements DataBaseAccess, SetupDatabaseAccess {
     public void addJoke(Joke newJoke) {
         try {
             Connection conn = DriverManager.getConnection(path);
-            PreparedStatement SqlStatement = conn.prepareStatement("INSERT INTO joke (joke,rating) VALUES (?,?);");
+            PreparedStatement SqlStatement = conn.prepareStatement("INSERT INTO joke (joke,rating,date) VALUES (?,?,?);");
             SqlStatement.setString(1, newJoke.text);
             SqlStatement.setInt(2, newJoke.rating);
+            SqlStatement.setDate(3,  new java.sql.Date(System.currentTimeMillis()));
             SqlStatement.executeUpdate();
             conn.close();
             SqlStatement.close();

@@ -60,9 +60,10 @@ public class DataBaseAccessMDB implements DataBaseAccess {
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(path);
-            PreparedStatement SqlStatement = conn.prepareStatement("INSERT INTO joke (content,rating) VALUES (?,?);");
+            PreparedStatement SqlStatement = conn.prepareStatement("INSERT INTO joke (content,rating,date) VALUES (?,?,?);");
             SqlStatement.setString(1, newJoke.text);
             SqlStatement.setInt(2, newJoke.rating);
+            SqlStatement.setDate(3,new java.sql.Date(System.currentTimeMillis()));
             SqlStatement.executeUpdate();
             conn.close();
             SqlStatement.close();
