@@ -25,9 +25,26 @@ public class JokeBook {
 
     public Joke getJokeById(int id) {return dao.getJokeById(id);}
 
-    public void addJoke(Joke newJoke) {dao.addJoke(newJoke);}
+    public void addJoke(Joke newJoke) {
+        jokes.add(newJoke);
+        dao.addJoke(newJoke);
+    }
 
-    public void updateJoke(int id, Joke newJoke) {dao.updateJoke(id,newJoke);}
+    public void updateJoke(int id, Joke newJoke) {
+        updateInArray(id,newJoke);
+        dao.updateJoke(id,newJoke);
+    }
 
-    public void deleteJoke(int id) {dao.deleteJoke(id);}
+    public void deleteJoke(int id) {
+        jokes.removeIf(joke -> joke.id == id);
+        dao.deleteJoke(id);
+    }
+
+    private void updateInArray (int id, Joke newJoke) {
+        for(int i = 0; i < jokes.size(); i++){
+            if(jokes.get(i).id == id){
+                jokes.set(i, newJoke);
+            }
+        }
+    }
 }
