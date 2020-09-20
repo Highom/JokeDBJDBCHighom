@@ -13,27 +13,20 @@ public class DataAccessFactory {
 
     public DataBaseAccess createDAO(String type) {
 
-        DataBaseAccess dao = null;
-
         switch (type)
         {
             case "sql":
-                dao = new DataBaseAccessSQL();
-                break;
+                return new DataBaseAccessSQL();
 
             case "mdb":
-                dao = new DataBaseAccessMDB();
-                break;
+                return new DataBaseAccessMDB();
 
             case "csv":
-                dao = new DataBaseAccessCsv();
-                break;
+                return new DataBaseAccessCsv();
 
             default:
                 break;
         }
-
-        return dao;
-
+        return null;
     }
 }
