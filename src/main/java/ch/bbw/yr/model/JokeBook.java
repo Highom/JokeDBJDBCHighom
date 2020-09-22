@@ -27,7 +27,9 @@ public class JokeBook {
 
     public void addJoke(Joke newJoke) {
         newJoke.date = new java.sql.Date(System.currentTimeMillis());
-        newJoke.id = jokes.get(jokes.size() - 1).id + 1;
+        if (jokes.size() != 0){
+            newJoke.id = jokes.get(jokes.size() - 1).id + 1;
+        }
 
         dao.addJoke(newJoke);
         jokes.add(newJoke);
