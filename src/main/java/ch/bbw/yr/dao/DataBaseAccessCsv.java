@@ -21,7 +21,7 @@ public class DataBaseAccessCsv implements DataBaseAccess, SetupDatabaseAccess {
                     path);
             Statement s = conn.createStatement();
             s.execute("DROP TABLE IF EXISTS joke");
-            s.execute("CREATE TEXT TABLE joke (id int, joke varchar(100), rating int, date datetime)");
+            s.execute("CREATE TEXT TABLE joke (id int IDENTITY, joke varchar(100), rating int, date datetime)");
             s.execute("SET TABLE joke SOURCE 'joke.csv;ignore_first=true;fs=\\semi'");
             conn.close();
             s.close();
