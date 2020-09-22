@@ -41,26 +41,29 @@ public class JokeController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/sql/jokes")
-    public void addJokeSQL(@RequestBody Joke newJoke) {
-        bookSql.addJoke(newJoke);
+    public ArrayList<Joke> addJokeSQL(@RequestBody Joke newJoke) {
+         bookSql.addJoke(newJoke);
+         return bookSql.getJokes();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/sql/jokes/{id}")
-    public void updateJokeSQL(@PathVariable int id, @RequestBody Joke newJoke) {
+    public ArrayList<Joke> updateJokeSQL(@PathVariable int id, @RequestBody Joke newJoke) {
         bookSql.updateJoke(id ,newJoke);
+        return bookSql.getJokes();
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/sql/jokes/{id}")
-    public void deleteJokeSQL(@PathVariable int id) {
+    public ArrayList<Joke> deleteJokeSQL(@PathVariable int id) {
         bookSql.deleteJoke(id);
+        return bookSql.getJokes();
     }
 
 
 
     @GetMapping("/mdb/jokes")
-    ArrayList<Joke> allMdb() {
+    public ArrayList<Joke> allMdb() {
         return bookMdb.getJokes();
     }
 
@@ -70,18 +73,21 @@ public class JokeController {
     }
 
     @PostMapping("/mdb/jokes")
-    public void addJokeMDB(@RequestBody Joke newJoke) {
+    public ArrayList<Joke> addJokeMDB(@RequestBody Joke newJoke) {
         bookMdb.addJoke(newJoke);
+        return bookMdb.getJokes();
     }
 
     @PutMapping("/mdb/jokes/{id}")
-    public void updateJokeMDB(@PathVariable int id, @RequestBody Joke newJoke) {
+    public ArrayList<Joke> updateJokeMDB(@PathVariable int id, @RequestBody Joke newJoke) {
         bookMdb.updateJoke(id ,newJoke);
+        return bookMdb.getJokes();
     }
 
     @DeleteMapping("/mdb/jokes/{id}")
-    public void deleteJokeMDB(@PathVariable int id) {
+    public ArrayList<Joke> deleteJokeMDB(@PathVariable int id) {
         bookMdb.deleteJoke(id);
+        return bookMdb.getJokes();
     }
 
 
@@ -96,17 +102,20 @@ public class JokeController {
     }
 
     @PostMapping("/csv/jokes")
-    public void addJokeCsv(@RequestBody Joke newJoke) {
+    public ArrayList<Joke> addJokeCsv(@RequestBody Joke newJoke) {
         bookCsv.addJoke(newJoke);
+        return bookCsv.getJokes();
     }
 
     @PutMapping("/csv/jokes/{id}")
-    public void updateJokeCsv(@PathVariable int id, @RequestBody Joke newJoke) {
+    public ArrayList<Joke> updateJokeCsv(@PathVariable int id, @RequestBody Joke newJoke) {
         bookCsv.updateJoke(id ,newJoke);
+        return bookCsv.getJokes();
     }
 
     @DeleteMapping("/csv/jokes/{id}")
-    public void deleteJokeCsv(@PathVariable int id) {
+    public ArrayList<Joke> deleteJokeCsv(@PathVariable int id) {
         bookCsv.deleteJoke(id);
+        return bookCsv.getJokes();
     }
 }
