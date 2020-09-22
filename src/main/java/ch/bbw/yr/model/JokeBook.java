@@ -26,8 +26,11 @@ public class JokeBook {
     public Joke getJokeById(int id) {return dao.getJokeById(id);}
 
     public void addJoke(Joke newJoke) {
-        jokes.add(newJoke);
+        newJoke.date = new java.sql.Date(System.currentTimeMillis());
+        newJoke.id = jokes.get(jokes.size() - 1).id + 1;
+
         dao.addJoke(newJoke);
+        jokes.add(newJoke);
     }
 
     public void updateJoke(int id, Joke newJoke) {
@@ -43,6 +46,8 @@ public class JokeBook {
     private void updateInArray (int id, Joke newJoke) {
         for(int i = 0; i < jokes.size(); i++){
             if(jokes.get(i).id == id){
+                newJoke.id = jokes.get(i).id;
+                newJoke.date = jokes.get(i).date;
                 jokes.set(i, newJoke);
             }
         }
