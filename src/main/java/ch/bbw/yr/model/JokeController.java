@@ -61,29 +61,33 @@ public class JokeController {
     }
 
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/mdb/jokes")
     public ArrayList<Joke> allMdb() {
         return bookMdb.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/mdb/jokes/{id}")
     public Joke oneMdb(@PathVariable int id) {
         return bookMdb.getJokeById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/mdb/jokes")
     public ArrayList<Joke> addJokeMDB(@RequestBody Joke newJoke) {
         bookMdb.addJoke(newJoke);
         return bookMdb.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/mdb/jokes/{id}")
     public ArrayList<Joke> updateJokeMDB(@PathVariable int id, @RequestBody Joke newJoke) {
         bookMdb.updateJoke(id ,newJoke);
         return bookMdb.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/mdb/jokes/{id}")
     public ArrayList<Joke> deleteJokeMDB(@PathVariable int id) {
         bookMdb.deleteJoke(id);
@@ -91,28 +95,33 @@ public class JokeController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/csv/jokes")
     ArrayList<Joke> allCsv() {
         return bookCsv.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/csv/jokes/{id}")
     public Joke oneCsv(@PathVariable int id) {
         return bookCsv.getJokeById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/csv/jokes")
     public ArrayList<Joke> addJokeCsv(@RequestBody Joke newJoke) {
         bookCsv.addJoke(newJoke);
         return bookCsv.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/csv/jokes/{id}")
     public ArrayList<Joke> updateJokeCsv(@PathVariable int id, @RequestBody Joke newJoke) {
         bookCsv.updateJoke(id ,newJoke);
         return bookCsv.getJokes();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/csv/jokes/{id}")
     public ArrayList<Joke> deleteJokeCsv(@PathVariable int id) {
         bookCsv.deleteJoke(id);
